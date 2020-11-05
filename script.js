@@ -8,7 +8,7 @@ function onOpen() {
   Browser.msgBox("Opening function");
   
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName("CoinGecko");
+  var sheet = ss.getSheetByName("Sheet2");
   var url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false';
   var json = getCoinGeckoData(url);
   
@@ -29,7 +29,7 @@ function onOpen() {
       ];
         Browser.msgBox(outputData);
         
-        sheet.getRange(1,1).setValues(outputData);
+        sheet.getRange(1,1,3,2).setValues(outputData);
         }
    }
 
