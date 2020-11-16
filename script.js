@@ -8,6 +8,7 @@ function onOpen() {
       .addItem('geckoFDV', 'FDVExplain')
       .addItem('geckoCircSupply', 'CircSupplyExplain')
       .addItem('geckoMaxSupply', 'MaxSupplyExplain')
+      .addItem('geckoExchangeVolume24h', 'ExchangeVolumeExplain')
       .addToUi();
 }
 
@@ -57,6 +58,13 @@ function MaxSupplyExplain() {
   var ui = SpreadsheetApp.getUi()
   ui.alert("Get max supply of cryptocurrency in your selected currency",
            'Pass in cryptocurrency and currency like so: geckoMaxSupply("bitcoin","usd"), or insert cell numbers',
+            ui.ButtonSet.OK)
+}
+
+function ExchangeVolumeExplain() {
+  var ui = SpreadsheetApp.getUi()
+  ui.alert("Get 24h volume of your selected exchange in btc.",
+           'Pass in exchange id like so: geckoExchangeVolume24h("binance"), or insert cell number',
             ui.ButtonSet.OK)
 }
 
@@ -164,6 +172,23 @@ function geckoMaxSupply(id,currency) {
    }
   }
 }
+
+function geckoExchangeVolume24h(id) {
+  var url = 'https://api.coingecko.com/api/v3/exchanges/' + encodeURI(id);
+  var json = getCoinGeckoData(url);
+  if (json[0] === "Error:") {
+    // deal with error with fetch operation
+    return("ERROR!");
+  }
+  else {
+    if (json !== 200) {
+      var data = json
+      return data.trade_volume_24h_btc;
+   }
+  }
+}
+
+
 
 function getCoinGeckoData(url) { 
   try {
