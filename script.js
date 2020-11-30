@@ -9,6 +9,7 @@ function onOpen() {
       .addItem('geckoCircSupply', 'CircSupplyExplain')
       .addItem('geckoMaxSupply', 'MaxSupplyExplain')
       .addItem('geckoExchangeVolume24h', 'ExchangeVolumeExplain')
+      .addItem('geckoAllCoins', 'geckoAllCoins')
       .addToUi();
 }
 
@@ -20,8 +21,10 @@ function myCellName() {
   return SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getActiveCell().getA1Notation();
 }
 
-var sheet = mySheetName();
+var s = mySheetName();
 var cell = myCellName();
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheetByName(s);
 
 function PriceExplain() {
   var ui = SpreadsheetApp.getUi()
@@ -270,10 +273,15 @@ function geckoExchangeVolume24h(id) {
   }
 }
 
-function geckoAllMetrics(id,currency) {
-  id = "bitcoin";
-  currency = "usd";
-  var url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=' + encodeURI(currency) + '&ids='+ encodeURI(id) + '&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+/** geckoAllCoins
+ * Shows all names and ids of coins available on coingecko. 
+ * For example:
+ *   =geckoAllCoins
+ * @customfunction
+**/
+
+function geckoAllCoins(){
+  var url = 'https://api.coingecko.com/api/v3/coins/list';
   var json = getCoinGeckoData(url);
   if (json[0] === "Error:") {
     // deal with error with fetch operation
@@ -281,14 +289,18 @@ function geckoAllMetrics(id,currency) {
   }
   else {
     if (json[0] !== 200) {
-      var data = json[0]
-      Browser.msgBox(Object.entries(data));
-   }
+      var test = new Array(); 
+      test = json.map(function(e) {
+        return [e.name, e.id];
+      })
+      var title = new Array();
+      title = [["coin_id","coin_name"]];
+      sheet.getRange(1,1,test.length,2).clearContent();
+      sheet.getRange(1,1,title.length,2).setValues(title);
+      sheet.getRange(2,1,test.length,2).setValues(test);
+    }
   }
-}
-
-function geckoAllCoins(){
-  Browser.msgBox(cell);
+  
 }
 
 
