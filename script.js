@@ -14,19 +14,6 @@ function onOpen() {
         .addToUi();
 }
 
-function mySheetName() {
-    return SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getName();
-}
-
-function myCellName() {
-    return SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getActiveCell().getA1Notation();
-}
-
-var s = mySheetName();
-var cell = myCellName();
-var ss = SpreadsheetApp.getActiveSpreadsheet();
-var sheet = ss.getSheetByName(s);
-
 function PriceExplain() {
     var ui = SpreadsheetApp.getUi()
     ui.alert("Get price of cryptocurrency in your selected currency",
@@ -93,7 +80,7 @@ function AllCoinsExplain() {
 function AllDataExplain() {
     var ui = SpreadsheetApp.getUi()
     ui.alert("Get data of all coins in your selected currency.",
-        'Pass in exchange currency like so: geckoAllData("usd"), or insert cell number',
+        'Pass in exchange currency (and optional: page number) like so: geckoAllData("usd", "2"), or insert cell number',
         ui.ButtonSet.OK)
 }
 
@@ -288,13 +275,9 @@ function geckoExchangeVolume24h(id) {
  **/
 
 function geckoAllCoins() {
-    var GSUUID = encodeURIComponent(Session.getTemporaryActiveUserKey());
     var url = 'https://api.coingecko.com/api/v3/coins/list';
-    var response = UrlFetchApp.fetch(url, {
-        muteHttpExceptions: true,
-        validateHttpsCertificates: true
-    })
-    data = JSON.parse(response.getContentText());
+    var response = getAllCoinGeckoData(url);
+    var data = JSON.parse(response.getContentText());
     title = [{
         "id": "coin_id",
         "name": "coin_name"
@@ -323,17 +306,19 @@ function geckoAllCoins() {
  * For example:
  *   =geckoAllData("usd")
  * @param {currency}  eg. usd
+ * @param {page}  eg. 1-25
  * @customfunction
  **/
 
-function geckoAllData(currency) {
-    var GSUUID = encodeURIComponent(Session.getTemporaryActiveUserKey());
-    var url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=' + encodeURI(currency);
-    var response = UrlFetchApp.fetch(url, {
-        muteHttpExceptions: true,
-        validateHttpsCertificates: true
-    })
-    data = JSON.parse(response.getContentText());
+function geckoAllData(currency, page) {
+    var page = (page + "") || "";
+    if (page === "") {
+        var url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=' + encodeURI(currency) + '&per_page=250';
+    } else {
+        var url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=' + encodeURI(currency) + '&per_page=250&page=' + encodeURI(page);
+    }
+    var response = getAllCoinGeckoData(url);
+    var data = JSON.parse(response.getContentText());
 
     title = [{
         "id": "coin_id",
@@ -359,10 +344,23 @@ function geckoAllData(currency) {
             })
             var titles = new Array();
             titles = title.map(function(e) {
-                return [e.id, e.symbol, e.name, e.current_price, e.market_cap, e.total_volume, e.high_24h, e.low_24h, e.price_change_24h];
+                return [e.id, e.symbol, e.name, e.current_price, e.market_cap, e.total_volume, e.high_24h, e.low_24h, e.price_change_24];
             })
         }
         return titles.concat(element);
+    }
+}
+
+function getAllCoinGeckoData(url) {
+    try {
+        var response = UrlFetchApp.fetch(url, {
+            muteHttpExceptions: true,
+            validateHttpsCertificates: true
+        })
+        return response;
+    } catch (e) {
+        Logger.log(e);
+        return ["Error:", e];
     }
 }
 
