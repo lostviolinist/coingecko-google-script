@@ -88,7 +88,7 @@ function AllDataExplain() {
  * Shows price of cryptocurrency in selected fiat currency. 
  * For example:
  *   =geckoPrice("bitcoin", "usd")
- * @param {cryptocurrency}  eg. btc
+ * @param {cryptocurrency}  eg. bitcoin
  * @param {fiat currency}   eg. usd
  * @customfunction
  **/
@@ -111,7 +111,7 @@ function geckoPrice(id, currency) {
  * Shows market cap of cryptocurrency in selected fiat currency. 
  * For example:
  *   =geckoMCap("bitcoin", "usd")
- * @param {cryptocurrency}  eg. btc
+ * @param {cryptocurrency}  eg. bitcoin
  * @param {fiat currency}   eg. usd
  * @customfunction
  **/
@@ -134,7 +134,7 @@ function geckoMCap(id, currency) {
  * Shows 24h price change of cryptocurrency in selected fiat currency. 
  * For example:
  *   =geckoPriceChange24h("bitcoin", "usd")
- * @param {cryptocurrency}  eg. btc
+ * @param {cryptocurrency}  eg. bitcoin
  * @param {fiat currency}   eg. usd
  * @customfunction
  **/
@@ -157,7 +157,7 @@ function geckoPriceChange24h(id, currency) {
  * Shows total volume of cryptocurrency in selected fiat currency. 
  * For example:
  *   =geckoPriceChange24h("bitcoin", "usd")
- * @param {cryptocurrency}  eg. btc
+ * @param {cryptocurrency}  eg. bitcoin
  * @param {fiat currency}   eg. usd
  * @customfunction
  **/
@@ -180,7 +180,7 @@ function geckoTotalVolume(id, currency) {
  * Shows fully diluted valuation of cryptocurrency in selected fiat currency. 
  * For example:
  *   =geckoFDV("bitcoin", "usd")
- * @param {cryptocurrency}  eg. btc
+ * @param {cryptocurrency}  eg. bitcoin
  * @param {fiat currency}   eg. usd
  * @customfunction
  **/
@@ -203,7 +203,7 @@ function geckoFDV(id, currency) {
  * Shows circulation supply of cryptocurrency in selected fiat currency. 
  * For example:
  *   =geckoCircSupply("bitcoin", "usd")
- * @param {cryptocurrency}  eg. btc
+ * @param {cryptocurrency}  eg. bitcoin
  * @param {fiat currency}   eg. usd
  * @customfunction
  **/
@@ -226,7 +226,7 @@ function geckoCircSupply(id, currency) {
  * Shows maimum supply of cryptocurrency in selected fiat currency. 
  * For example:
  *   =geckoMaxSupply("bitcoin", "usd")
- * @param {cryptocurrency}  eg. btc
+ * @param {cryptocurrency}  eg. bitcoin
  * @param {fiat currency}   eg. usd
  * @customfunction
  **/
