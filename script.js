@@ -87,7 +87,7 @@ function AllDataExplain() {
 /** geckoPrice
  * Shows price of cryptocurrency in selected fiat currency. 
  * For example:
- *   =geckoPrice("BTC", "USD")
+ *   =geckoPrice("bitcoin", "usd")
  * @param {cryptocurrency}  eg. btc
  * @param {fiat currency}   eg. usd
  * @customfunction
@@ -110,7 +110,7 @@ function geckoPrice(id, currency) {
 /** geckoMCap
  * Shows market cap of cryptocurrency in selected fiat currency. 
  * For example:
- *   =geckoMCap("BTC", "USD")
+ *   =geckoMCap("bitcoin", "usd")
  * @param {cryptocurrency}  eg. btc
  * @param {fiat currency}   eg. usd
  * @customfunction
@@ -133,7 +133,7 @@ function geckoMCap(id, currency) {
 /** geckopriceChange24h
  * Shows 24h price change of cryptocurrency in selected fiat currency. 
  * For example:
- *   =geckoPriceChange24h("BTC", "USD")
+ *   =geckoPriceChange24h("bitcoin", "usd")
  * @param {cryptocurrency}  eg. btc
  * @param {fiat currency}   eg. usd
  * @customfunction
@@ -156,7 +156,7 @@ function geckoPriceChange24h(id, currency) {
 /** geckoTotalVolume
  * Shows total volume of cryptocurrency in selected fiat currency. 
  * For example:
- *   =geckoPriceChange24h("BTC", "USD")
+ *   =geckoPriceChange24h("bitcoin", "usd")
  * @param {cryptocurrency}  eg. btc
  * @param {fiat currency}   eg. usd
  * @customfunction
@@ -179,7 +179,7 @@ function geckoTotalVolume(id, currency) {
 /** geckoFDV
  * Shows fully diluted valuation of cryptocurrency in selected fiat currency. 
  * For example:
- *   =geckoFDV("BTC", "USD")
+ *   =geckoFDV("bitcoin", "usd")
  * @param {cryptocurrency}  eg. btc
  * @param {fiat currency}   eg. usd
  * @customfunction
@@ -202,7 +202,7 @@ function geckoFDV(id, currency) {
 /** geckoCircSupply
  * Shows circulation supply of cryptocurrency in selected fiat currency. 
  * For example:
- *   =geckoCircSupply("BTC", "USD")
+ *   =geckoCircSupply("bitcoin", "usd")
  * @param {cryptocurrency}  eg. btc
  * @param {fiat currency}   eg. usd
  * @customfunction
@@ -225,7 +225,7 @@ function geckoCircSupply(id, currency) {
 /** geckoMaxSupply
  * Shows maimum supply of cryptocurrency in selected fiat currency. 
  * For example:
- *   =geckoMaxSupply("BTC", "USD")
+ *   =geckoMaxSupply("bitcoin", "usd")
  * @param {cryptocurrency}  eg. btc
  * @param {fiat currency}   eg. usd
  * @customfunction
@@ -304,7 +304,7 @@ function geckoAllCoins() {
 /** geckoAllData
  * Shows data of all coins in selected currency. 
  * For example:
- *   =geckoAllData("usd")
+ *   =geckoAllData("usd", "2")
  * @param {currency}  eg. usd
  * @param {page}  eg. 1-25
  * @customfunction
