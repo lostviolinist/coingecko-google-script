@@ -302,7 +302,7 @@ function geckoAllCoins() {
 }
 
 /** geckoAllData
- * Shows data of all coins in selected currency. 
+ * shows price, market cap, volume and more for all coins in selected currency (shows in ascending order for top 250 by market cap) 
  * For example:
  *   =geckoAllData("usd", "2")
  * @param {currency}  eg. usd
