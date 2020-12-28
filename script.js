@@ -80,7 +80,7 @@ function AllCoinsExplain() {
 function AllDataExplain() {
     var ui = SpreadsheetApp.getUi()
     ui.alert("Get data of all coins in your selected currency.",
-        'Pass in exchange currency (and optional: page number) like so: geckoAllData("usd", "2"), or insert cell number',
+        'Shows price, market cap, volume and more for all coins in selected currency (shows in ascending order for top 250 by market cap). Pass in exchange currency (and optional: page number) like so: geckoAllData("usd", "2"), or insert cell number',
         ui.ButtonSet.OK)
 }
 
@@ -302,7 +302,7 @@ function geckoAllCoins() {
 }
 
 /** geckoAllData
- * shows price, market cap, volume and more for all coins in selected currency (shows in ascending order for top 250 by market cap) 
+ * shows price, market cap, volume and more for all coins in selected currency (shows in ascending order for top 250 by market cap)
  * For example:
  *   =geckoAllData("usd", "2")
  * @param {currency}  eg. usd
