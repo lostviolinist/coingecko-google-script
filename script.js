@@ -94,7 +94,8 @@ function AllDataExplain() {
  **/
 
 function geckoPrice(id, currency) {
-    var url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=' + encodeURI(currency) + '&ids=' + encodeURI(id) + '&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+
+      var url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=' + encodeURI(currency) + '&ids=' + encodeURI(id) + '&order=market_cap_desc&per_page=100&page=1&sparkline=false';
     var json = getCoinGeckoData(url);
     if (json[0] === "Error:") {
         // deal with error with fetch operation
@@ -105,6 +106,7 @@ function geckoPrice(id, currency) {
             return data.current_price;
         }
     }
+
 }
 
 /** geckoMCap
@@ -366,7 +368,10 @@ function getAllCoinGeckoData(url) {
 
 function getCoinGeckoData(url) {
     try {
-        var response = UrlFetchApp.fetch(url);
+        var response = UrlFetchApp.fetch(url, {
+            muteHttpExceptions: true,
+            validateHttpsCertificates: true
+        });
         var responseData = response.getContentText();
         var json = JSON.parse(responseData);
         return json;
