@@ -99,7 +99,7 @@ function geckoPrice(id, currency) {
     var json = getCoinGeckoData(url);
     if (json[0] === "Error:") {
         // deal with error with fetch operation
-        return (url);
+        return ("Error");
     } else {
         if (json[0] !== 200) {
             var data = json[0]
